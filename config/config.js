@@ -55,8 +55,19 @@ export default {
            //那么就转发到远端的 https://08ad1pao69.execute-api.us-east-1.amazonaws.com 服务器当中，/dev 也会保留在转发地址中。
            //比如：/dev/random_joke 就会被转发到 https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_joke
        '/dev': {
-          target: 'http://localhost:3000',
+          target: 'http://localhost:8088',
           changeOrigin: true,
+          "pathRewrite": { "^/dev" : "" }//去除/dev前缀
         },
+        '/prod':{
+            target: 'http://localhost:3000',
+            changeOrigin: true,
+        },
+            //比如：/dev/random_joke 就会被转发到 https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_joke
+        '/api': {
+            target: 'http://localhost:8088',
+            changeOrigin: true,
+            pathRewrite: { "^/api" : "" }
+         },
       },
 }

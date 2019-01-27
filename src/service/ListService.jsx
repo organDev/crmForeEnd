@@ -7,6 +7,7 @@ export function queryList(){
 }
 
 export function addOne(data) {
+  error();
     return request('/dev/cards/add', {
       headers: {
         'content-type': 'application/json',
@@ -21,3 +22,9 @@ export function deleteOne(id) {
       method: 'DELETE'
     });
   }
+
+export function error(){
+  return request('/api/consumer/error',{
+    method: 'GET'
+  });
+}  
